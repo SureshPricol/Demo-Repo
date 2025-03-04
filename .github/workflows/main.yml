@@ -1,0 +1,16 @@
+name: Sync to Backup Repo
+on:
+  push:
+    branches:
+      - main  # Change this if you want another branch to sync
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Repo
+        uses: actions/checkout@v3
+ 
+      - name: Push to Target Repo
+        run: |
+          git remote add target https://github.com/Pricol-IT/chat-bot
+          git push --mirror target
